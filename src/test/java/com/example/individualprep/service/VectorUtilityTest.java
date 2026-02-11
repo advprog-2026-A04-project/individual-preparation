@@ -1,0 +1,38 @@
+package com.example.individualprep.service;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+class VectorUtilityTest {
+
+    @Test
+    void multiply_multipliesEachElementByScalar() {
+        VectorUtility vectorUtility = new VectorUtility();
+        double[] input = {1.0, -2.5, 0.0};
+
+        double[] result = vectorUtility.multiply(input, 3);
+
+        assertArrayEquals(new double[] {3.0, -7.5, 0.0}, result, 1e-9);
+        assertArrayEquals(new double[] {1.0, -2.5, 0.0}, input, 1e-9);
+    }
+
+    @Test
+    void multiply_handlesEmptyVector() {
+        VectorUtility vectorUtility = new VectorUtility();
+        assertEquals(0, vectorUtility.multiply(new double[0], 10).length);
+    }
+
+    @Test
+    void multiply_throwsOnNullVector() {
+        VectorUtility vectorUtility = new VectorUtility();
+
+        IllegalArgumentException exception =
+                assertThrows(IllegalArgumentException.class, () -> vectorUtility.multiply(null, 2));
+
+        assertEquals("v1 must not be null", exception.getMessage());
+    }
+}
+
