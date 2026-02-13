@@ -2,9 +2,12 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '4.0.2'
 	id 'io.spring.dependency-management' version '1.1.7'
-	id 'checkstyle'
-	id "org.sonarqube" version "7.2.2.6593"
 
+	// Linter
+	id 'checkstyle'
+
+	// SonarCloud / SonarQube
+	id "org.sonarqube" version "7.2.2.6593"
 }
 
 group = 'com.example'
@@ -31,15 +34,18 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
+/** -------- Checkstyle (Linter) -------- */
 checkstyle {
-	toolVersion = '10.12.7'
+	toolVersion = '10.12.5'
 	configFile = file('config/checkstyle/checkstyle.xml')
 }
 
-tasks.withType(Checkstyle).configureEach {
-	reports {
-		xml.required = true
-		html.required = true
-	}
+/** -------- Sonar --------
 
+ */
+sonar {
+	properties {
+		property "sonar.organization", "advprog-2026-a04-project"
+		property "sonar.projectKey", "advprog-2026-A04-project_Module-00-Group-Preparation"
+	}
 }
