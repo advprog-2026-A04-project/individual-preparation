@@ -16,7 +16,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup JDK 21
+      - name: Setup Java Toolchain
         uses: actions/setup-java@v4
         with:
           distribution: temurin
