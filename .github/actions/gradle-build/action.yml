@@ -1,4 +1,4 @@
-name: Gradle Build
+name: Gradle Builds
 description: Runs tests, lints, coverage, and SonarCloud scan
 
 runs:
